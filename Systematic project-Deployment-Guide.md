@@ -61,6 +61,17 @@ aws sts get-caller-identity
 
 ---
 
+### 1.3 Critical Modifications to CloudFormation Database Stack
+Before deploying our infrastructure in Phase 1, we made several mandatory technical modifications to the `cloudformation-database-stack.yaml` script. These changes were required to fix deployment bugs and strictly align with the AWS Free Tier limitations:
+
+- **Engine Version Bug Fix (Line 56):** The template originally requested MySQL `8.0.35`, which was deprecated by AWS, causing deployment failures. We updated this to a generic pointer `'8.0'` so AWS automatically pulls the latest stable sub-version.
+- **Subnet Publicity (Lines 43-44 & 77):** We shifted the RDS instance to use `grc-capstone-public-subnet-1-id` and explicitly added `PubliclyAccessible: true`. This was required so we could securely seed the database from our local VS Code Workbench instance without requiring complex VPN setups.
+- **Free-Tier Cost Constraints (Lines 68 & 71):**
+  - `MultiAZ` was set to `false`. Running a redundant database in a secondary Availability Zone instantly triggers massive hourly billing outside the Free Tier.
+  - `BackupRetentionPeriod` was reduced to `1` day, saving storage footprint costs while still demonstrating basic backup compliance.
+
+---
+
 ## 2. Architecture Overview
 **Network Layer:** VPC with public subnets, Internet Gateway.
 **Data Layer:** Amazon RDS MySQL 8.0, Amazon S3.
