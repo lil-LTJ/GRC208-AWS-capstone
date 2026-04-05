@@ -62,13 +62,29 @@ aws sts get-caller-identity
 ---
 
 ### 1.3 Critical Modifications to CloudFormation Database Stack
-Before deploying our infrastructure in Phase 1, we made several mandatory technical modifications to the `cloudformation-database-stack.yaml` script. These changes were required to fix deployment bugs and strictly align with the AWS Free Tier limitations:
+Before deploying our infrastructure in Phase 1, you **must** make several technical modifications to the `cloudformation-database-stack.yaml` file. These changes are required to fix deployment bugs and strictly align with the AWS Free Tier limitations. 
 
-- **Engine Version Bug Fix (Line 56):** The template originally requested MySQL `8.0.35`, which was deprecated by AWS, causing deployment failures. We updated this to a generic pointer `'8.0'` so AWS automatically pulls the latest stable sub-version.
-- **Subnet Publicity (Lines 43-44 & 77):** We shifted the RDS instance to use `grc-capstone-public-subnet-1-id` and explicitly added `PubliclyAccessible: true`. This was required so we could securely seed the database from our local VS Code Workbench instance without requiring complex VPN setups.
-- **Free-Tier Cost Constraints (Lines 68 & 71):**
-  - `MultiAZ` was set to `false`. Running a redundant database in a secondary Availability Zone instantly triggers massive hourly billing outside the Free Tier.
-  - `BackupRetentionPeriod` was reduced to `1` day, saving storage footprint costs while still demonstrating basic backup compliance.
+Open `cloudformation-database-stack.yaml` in VS Code and make the following exact line-by-line changes:
+
+#### 1. S3 Bucket Encryption Syntax Fixes (Lines 120 & 170)
+* **What to change:** Find `BucketEncryption:` inside both the `EvidenceBucket` and `ComplianceReportsBucket` blocks. Make sure that the `ServerSideEncryptionConfiguration:` property is correctly indented **underneath** `BucketEncryption:`, pushing it "inward" so that it acts as a child of the encryption lock.
+* **Why:** The original code had a schema syntax failure where the encryption configuration wasn't nested properly. By pushing it inwards, CloudFormation recognizes it as a valid security header, bypassing deployment crashes.
+
+#### 2. Subnet Network Publicity (Lines 43-44)
+* **What to change:** Change `- !ImportValue grc-capstone-private-subnet-1-id` to say `- !ImportValue grc-capstone-public-subnet-1-id`. (Do this for subnet 2 as well).
+* **Why:** This forces our database into the public subnets instead of the private, unroutable network. It allows our local VS Code workbench to actually connect to the database over the internet.
+
+#### 3. Database Engine Version Update (Line 56)
+* **What to change:** Change `EngineVersion: '8.0.35'` to just say `EngineVersion: '8.0'`.
+* **Why:** AWS recently deprecated the highly specific `8.0.35` version, meaning asking for it will cause an instant failure. Switching it to `8.0` tells AWS to just automatically pull their most recent stable version.
+
+#### 4. Free-Tier Compliance Restrictions (Lines 68 & 71)
+* **What to change:** Change `BackupRetentionPeriod: 7` to `BackupRetentionPeriod: 1`. Then change `MultiAZ: true` to `MultiAZ: false`.
+* **Why:** These are massive cost-savers. `MultiAZ: true` creates a second, identical backup database in another data center, which instantly falls outside the AWS Free Tier and triggers hourly billing. Reducing backups from 7 days to 1 day drastically limits storage footprint costs.
+
+#### 5. Enable Public Accessibility (Line 77)
+* **What to change:** Add the line `PubliclyAccessible: true` directly under the `EnableIAMDatabaseAuthentication: true` line.
+* **Why:** Even though we put the database in a public subnet earlier, AWS databases default to rejecting external internet traffic as a security measure. Flipping this flag to `true` is the final step required so we can securely seed the database from our local laptop.
 
 ---
 
