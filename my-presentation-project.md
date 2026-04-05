@@ -79,7 +79,7 @@
 - **Where to Snapshot:** VS Code Terminal.
 - **What to Snapshot:** A screenshot of the terminal after running `python test_cases.py`, showing that the assertions and functional checks have passed successfully.
 - **Image:**  
-  `![Automated Python Test Suite Success](./images/slide7_test_suite.png)`
+  `![Automated Python Test Suite Success](Snapshots form GRC208-AWS/Automated Python Test Suite Success.JPG)`
 - **Descriptive Explanation:** "This screenshot acts as the programmatic grading rubric. By running the pre-written unit suite (`test_cases.py`), it actively queries the AWS environment and asserts mathematically that all security controls, database connectivity, and backend infrastructure elements natively meet the Capstone's strict technical prerequisites seamlessly."
 
 ---
