@@ -1,6 +1,6 @@
 # GRC208 AWS Capstone Project - 100% Submission Presentation Structure
 
-**Student Name:** [Your Name]  
+**Student Name:** Lilly Adjei  
 **Course:** GRC208  
 **Instructor:** Aminu Idris - ICDFA  
 **Date:** April 2026  
