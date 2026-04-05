@@ -7,6 +7,19 @@
 
 ---
 
+## Table of Contents
+- [Slide 1: Account Setup Prerequisites & MFA](#slide-1-account-setup-prerequisites--mfa)
+- [Slide 2: Phase 1 - Secure Infrastructure Deployment (IaC)](#slide-2-phase-1---secure-infrastructure-deployment-iac)
+- [Slide 3: Phase 2 - Risk Management Storage (DynamoDB)](#slide-3-phase-2---risk-management-storage-dynamodb)
+- [Slide 4: Phase 3 - Database Connectivity & Seeding](#slide-4-phase-3---database-connectivity--seeding)
+- [Slide 5: Phase 4 - Automated Compliance Engine (Lambda)](#slide-5-phase-4---automated-compliance-engine-lambda)
+- [Slide 6: Phase 5 - Continuous Audit Pipeline (EventBridge & AWS Config)](#slide-6-phase-5---continuous-audit-pipeline-eventbridge--aws-config)
+- [Slide 7: Phase 6 - Automated Test Suite Validation](#slide-7-phase-6---automated-test-suite-validation)
+- [Slide 8: Phase 7 - Resource Lifecycle Management & Teardown](#slide-8-phase-7---resource-lifecycle-management--teardown)
+- [Conclusion](#conclusion)
+- [Appendix: Supplementary Project Evidence](#appendix-supplementary-project-evidence)
+
+---
 ## Slide 1: Account Setup Prerequisites & MFA
 **Proof of Secure Account Foundation**
 
