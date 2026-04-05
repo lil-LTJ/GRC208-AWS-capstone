@@ -1,12 +1,94 @@
 # GRC Platform - Complete VS Code Deployment Guide
 
 ## Table of Contents
+0. Foundational Security & Account Setup
 1. Prerequisites & Terminal Setup
 2. Architecture Overview
 3. Step-by-Step Deployment
 4. Configuration
 5. Testing and Validation
 6. Post-Deployment Steps
+## 0. Foundational Security & Account Setup
+
+Before typing a single command or interacting with VS Code, we must establish a hardened security perimeter and financial guardrails around your AWS Account. 
+
+### 0.1 Create an MFA for the Root Account
+1. Log into the AWS Management Console using your root email address.
+2. In the top-right corner, click your account name and select **Security Credentials**.
+3. Under the **Multi-factor authentication (MFA)** section, click **Assign MFA device**.
+4. Choose **Authenticator app** (e.g., Google Authenticator, Authy), scan the QR code with your phone, and enter two consecutive codes to bind the device.
+
+<span style="color:red;">
+**Layman Explanation:** Multi-Factor Authentication (MFA) requires your phone's randomly generating code in addition to your password to log in. <br>
+**Project Objective:** The root account is the absolute 'master key' to your AWS environment. Securing it with MFA is the foundational compliance mandate of any Governance framework; it actively neutralizes 99% of hijacked password risks.
+</span>
+
+### 0.2 Create an Administrative IAM User
+1. Search for **IAM** (Identity and Access Management) in the top AWS search bar.
+2. Navigate to **Users** on the left menu, then click **Create user**.
+3. Name the user (e.g., `grcadmin`) and check the box to **Provide user access to the AWS Management Console**. Let it auto-generate a password.
+4. On the permissions page, select **Attach policies directly** and check the box for `AdministratorAccess`.
+5. Finish creating the user and download the CSV containing their login URL and password. 
+
+<span style="color:red;">
+**Layman Explanation:** Instead of logging in with the 'Master Key' (Root), we create a secondary 'Manager Badge' (IAM User) that can do everything but physically delete the AWS account.<br>
+**Project Objective:** In cybersecurity, you never use the root account for daily tasks because its privileges cannot be restricted. Creating an IAM User adheres to the "Principle of Least Privilege" framework.
+</span>
+
+### 0.3 Enforce IAM User MFA
+1. Log completely out of the Root account, and log back in using the custom URL provided in your `grcadmin` IAM User CSV.
+2. Navigate immediately to **IAM > Security Credentials**.
+3. Assign an MFA device exactly as you did in Step 0.1 for this specific user.
+
+<span style="color:red;">
+**Layman Explanation:** We are putting the exact same smartphone lock on the Manager Badge.<br>
+**Project Objective:** Security is heavily reliant on "Defense in Depth". Every single administrative entry point into the AWS ecosystem must be cryptographically protected by MFA.
+</span>
+
+### 0.4 Set up a Financial Budget ($10 Limit)
+1. Search for **AWS Budgets** in the top search bar.
+2. Click **Create budget** -> **Use a template (simplified)** -> **Zero spend budget** (or manually input $10 for a custom maximum).
+3. Under email recipients, type in your personal email address.
+4. Click **Create budget**.
+
+<span style="color:red;">
+**Layman Explanation:** This forces AWS to look at your bill. If AWS predicts you will spend more than $10 this month, it will immediately email your phone.<br>
+**Project Objective:** Financial compliance is a critical engineering requirement. A budget guarantees you won't accidentally leave massive cloud databases running and get hit with a $500 invoice a month later.
+</span>
+
+### 0.5 Generate Programmatic Access Keys
+1. While still logged in as the IAM User, navigate to **IAM > Users > your-user-name**.
+2. Click the **Security credentials** tab.
+3. Scroll down to **Access keys** and click **Create access key**.
+4. Select **Command Line Interface (CLI)** as the use case.
+5. Click through to generate the keys. **Download the CSV immediately**, as you will literally never be able to see the Secret Access Key again.
+
+<span style="color:red;">
+**Layman Explanation:** Access keys are essentially a username and password designed for robots and computers instead of humans.<br>
+**Project Objective:** Since we are using VS Code to automatically build architecture using code, our local terminal needs a way to securely 'log in' behind the scenes.
+</span>
+
+### 0.6 Create a Project Folder
+1. Open your computer's native file explorer (Windows Explorer).
+2. Navigate to your `D:` drive (or Desktop) and create a brand new master folder named `GRC208-AWS-capstone`.
+3. Open this folder, and create a sub-folder named `GRC208-AWS-capstone-2`. This acts as our primary workspace.
+
+<span style="color:red;">
+**Layman Explanation:** You are just making an organized container folder on your hard drive.<br>
+**Project Objective:** Standardizing your local workspace cleanly isolates your Capstone code from the rest of your computer, preventing messy local path errors.
+</span>
+
+### 0.7 Configure VS Code Workspace
+1. Launch **Visual Studio Code (VS Code)**.
+2. Go to **File > Open Folder**.
+3. Select the `GRC208-AWS-capstone-2` sub-folder you just created.
+
+<span style="color:red;">
+**Layman Explanation:** We are pointing our code editor directly at our empty project box.<br>
+**Project Objective:** This initializes our development environment so that any terminal commands or code files we create going forward are securely locked inside our Capstone project boundary.
+</span>
+
+---
 
 ## 1. Prerequisites & Terminal Setup
 
