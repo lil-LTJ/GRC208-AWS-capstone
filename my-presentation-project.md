@@ -13,7 +13,7 @@
 - **Where to Snapshot:** AWS Console > IAM > Security Credentials.
 - **What to Snapshot:** Take a screenshot of the "Multi-factor authentication (MFA)" section showing a green checkmark/active MFA device.
 - **Image:**  
-  `![MFA Setup Secure Account Foundation](./images/slide1_mfa.png)`
+  ![MFA Setup Secure Account Foundation](<./Snapshots form GRC208-AWS/MFA Setup Secure Account Foundation.JPG>)
 - **Descriptive Explanation:** "This snapshot confirms the implementation of Multi-Factor Authentication (MFA) on the root/IAM account. In GRC (Governance, Risk, and Compliance), identity and access management is the first line of defense. By enabling MFA, the primary authentication vector is hardened against compromised credentials, fulfilling a core access control requirement."
 
 ---
@@ -24,7 +24,7 @@
 - **Where to Snapshot:** AWS Console > CloudFormation > Stacks.
 - **What to Snapshot:** A screenshot showing both `grc-capstone-network-stack` and `grc-capstone-database-stack` with a status of **CREATE_COMPLETE**.
 - **Image:**  
-  `![CloudFormation Infrastructure Stacks](./images/slide2_cfn_stacks.png)`
+  ![CloudFormation Infrastructure Stacks](<./Snapshots form GRC208-AWS/CloudFormation Infrastructure Stacks.JPG>)
 - **Descriptive Explanation:** "This evidence demonstrates the successful deployment of the isolated cloud infrastructure using Infrastructure as Code (CloudFormation). Instead of manually clicking through menus, I used verifiable code to automatically generate a secure VPC network and an encrypted RDS database, eliminating human-error configuration drift."
 
 ---
@@ -35,7 +35,7 @@
 - **Where to Snapshot:** AWS Console > DynamoDB > Tables.
 - **What to Snapshot:** A screenshot showing the active DynamoDB tables, specifically clicking into the `grc-capstone-RiskRegister` (or `grc-risk-register`) table showing it is "Active".
 - **Image:**  
-  `![DynamoDB Risk Register Table](./images/slide3_dynamodb.png)`
+  ![DynamoDB Risk Register Table](<./Snapshots form GRC208-AWS/DynamoDB Risk Register Table.JPG>)
 - **Descriptive Explanation:** "This snapshot proves the successful deployment of our DynamoDB Risk Register table. While traditional compliance controls stay in the RDS database, DynamoDB provides the high-speed, real-time NoSQL cache required for dynamic risk scoring matrices and rapid querying of vulnerability identifiers, enabling real-time status reporting."
 
 ---
@@ -46,7 +46,7 @@
 - **Where to Snapshot:** AWS CloudShell (or VS Code / MySQL Workbench).
 - **What to Snapshot:** A screenshot of the terminal/interface after successfully executing the injection command, specifically showing the successful output of the query: `mysql -h $DB_ENDPOINT ... -e "USE grcdb; SELECT COUNT(*) FROM compliance_summary;"`
 - **Image:**  
-  `![Database Query Seeding Output](./images/slide4_db_seeding.png)`
+  ![Database Query Seeding Output](<./Snapshots form GRC208-AWS/Database Query Seeding Output.JPG>)
 - **Descriptive Explanation:** "This snapshot validates that the RDS security groups were correctly configured to allow secure inbound connections. It proves that the relational database was successfully seeded with sample compliance frameworks (like ISO 27001, HIPAA, and NIST) and that the baseline compliance data is correctly structured and querying as expected."
 
 ---
@@ -57,7 +57,7 @@
 - **Where to Snapshot:** VS Code Terminal.
 - **What to Snapshot:** A screenshot of the terminal running the manual Lambda invocation command (`aws lambda invoke... response.json` and `Get-Content response.json`) showing a `{"statusCode": 200}` output.
 - **Image:**  
-  `![Lambda Function Execution Success](./images/slide5_lambda_test.png)`
+  ![Lambda Function Execution Success](<./Snapshots form GRC208-AWS/Lambda Function Execution Success.JPG>)
 - **Descriptive Explanation:** "This snapshot acts as proof of execution for the Python-based compliance monitor. By hosting the automation logic within an AWS Lambda function, the compliance scanner is serverless and isolated. The successful 200 response proves the function possesses the correct IAM permissions to securely scan vulnerabilities without failure."
 
 ---
@@ -68,7 +68,7 @@
 - **Where to Snapshot:** AWS Console > EventBridge > Rules.
 - **What to Snapshot:** A screenshot of the `grc-compliance-check` rule showing its schedule expression (`rate(1 hour)`) and the Lambda function set as the target.
 - **Image:**  
-  `![EventBridge Hourly Schedule Rule](./images/slide6_eventbridge.png)`
+  ![EventBridge Hourly Schedule Rule](<./Snapshots form GRC208-AWS/EventBridge Hourly Schedule Rule.JPG>)
 - **Descriptive Explanation:** "This snapshot validates the 'Continuous Monitoring' objective of modern GRC. By linking an EventBridge rule to our Lambda function, I have architected an automated compliance pipeline that independently triggers an audit 24 times a day. If any infrastructure parameters drift out of bounds, this system flags it within an hour."
 
 ---
@@ -79,7 +79,7 @@
 - **Where to Snapshot:** VS Code Terminal.
 - **What to Snapshot:** A screenshot of the terminal after running `python test_cases.py`, showing that the assertions and functional checks have passed successfully.
 - **Image:**  
-  `![Automated Python Test Suite Success](<./Snapshots form GRC208-AWS/Automated Python Test Suite Success.JPG>)`
+  ![Automated Python Test Suite Success](<./Snapshots form GRC208-AWS/Automated Python Test Suite Success.JPG>)
 - **Descriptive Explanation:** "This screenshot acts as the programmatic grading rubric. By running the pre-written unit suite (`test_cases.py`), it actively queries the AWS environment and asserts mathematically that all security controls, database connectivity, and backend infrastructure elements natively meet the Capstone's strict technical prerequisites seamlessly."
 
 ---
@@ -90,7 +90,7 @@
 - **Where to Snapshot:** AWS Console > Billing Dashboard > Budgets (Or CloudFormation empty stacks).
 - **What to Snapshot:** A screenshot showing your active $10 Billing Alert budget, OR a screenshot of your CloudFormation stack page showing no `grc-capstone-*` stacks remain.
 - **Image:**  
-  `![Empty CloudFormation / Billing Budget](./images/slide8_teardown.png)`
+  ![Empty CloudFormation / Billing Budget](<./Snapshots form GRC208-AWS/IAM Budget.JPG>)
 - **Descriptive Explanation:** "The final snapshot demonstrates overarching financial compliance and resource lifecycle governance. In cloud engineering, aggressively tearing down and dismantling unused infrastructure is just as important as building it; it prevents runaway overhead costs and minimizes the attack surface of unused resources. This confirms the environment was successfully retired."
 
 ---
