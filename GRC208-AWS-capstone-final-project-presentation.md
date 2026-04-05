@@ -2,6 +2,7 @@
 
 **Student Name:** Lilly Adjei  
 **Reg. No:** 2025/GRC/10988
+
 **Course:** GRC208 AWS Capstone Project 
 **Instructor:** Aminu Idris - ICDFA  
 **Date:** 5th April 2026  
