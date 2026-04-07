@@ -27,7 +27,7 @@
 ## Systematic Deployment Walkthrough
 **Comprehensive Project Deployment Guide**
 
-For a meticulous, step-by-step breakdown of how this overarching environment was constructed from scratch, please refer to the fully documented [Systematic Project Deployment Guide](https://github.com/lil-LTJ/GRC208-AWS-capstone/blob/main/GRC208-AWS-capstone-2/Systematic%20project-Deployment-Guide.md). 
+For a meticulous, step-by-step breakdown of how this overarching environment was constructed from scratch, please refer to the fully documented [Systematic Project Deployment Guide](https://github.com/lil-LTJ/GRC208-AWS-capstone/blob/main/Systematic%20project-Deployment-Guide.md). 
 
 This guide acts as the foundational logbook for the Capstone. It explicitly tracks all terminal commands executed, validates security protocols, and details critical infrastructure adjustments (e.g., mandatory Free Tier parameter tuning, MySQL engine version bug-fixes, and database subnet modifications) that were structurally applied to the raw CloudFormation architecture. 
 
