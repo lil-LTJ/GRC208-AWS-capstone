@@ -27,7 +27,7 @@
 ## Systematic Deployment Walkthrough
 **Comprehensive Project Deployment Guide**
 
-For a meticulous, step-by-step breakdown of how this overarching environment was constructed from scratch, please refer to the fully documented [Systematic Project Deployment Guide](./Systematic%20project-Deployment-Guide.md). 
+For a meticulous, step-by-step breakdown of how this overarching environment was constructed from scratch, please refer to the fully documented [Systematic Project Deployment Guide](https://github.com/lil-LTJ/GRC208-AWS-capstone/blob/main/GRC208-AWS-capstone-2/Systematic%20project-Deployment-Guide.md). 
 
 This guide acts as the foundational logbook for the Capstone. It explicitly tracks all terminal commands executed, validates security protocols, and details critical infrastructure adjustments (e.g., mandatory Free Tier parameter tuning, MySQL engine version bug-fixes, and database subnet modifications) that were structurally applied to the raw CloudFormation architecture. 
 
@@ -50,7 +50,7 @@ This guide acts as the foundational logbook for the Capstone. It explicitly trac
 - **Snapshot location/path:** AWS Console > CloudFormation > Stacks.
 - **Description of snapshot:** A screenshot showing both `grc-capstone-network-stack` and `grc-capstone-database-stack` with a status of **CREATE_COMPLETE**.
 - **Image:**  
-  ![CloudFormation Infrastructure Stacks](<./Snapshots form GRC208-AWS/CloudFormation Infrastructure StacksJPG>)
+  ![CloudFormation Infrastructure Stacks](<./Snapshots form GRC208-AWS/CloudFormation Infrastructure Stacks.JPG>)
 - **Descriptive Explanation:** "This evidence demonstrates the successful deployment of the isolated cloud infrastructure using Infrastructure as Code (CloudFormation). Instead of manually clicking through menus, I used verifiable code to automatically generate a secure VPC network and an encrypted RDS database, eliminating human-error configuration drift."
 
 ---
