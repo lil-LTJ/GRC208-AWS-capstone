@@ -117,7 +117,7 @@ winget install --id Oracle.MySQLWorkbench -e --source winget
 > **Important:** After these finish installing, you MUST click the trash can icon to close your terminal and open a brand new one (Terminal > New Terminal) so VS Code can recognize the newly installed `aws` and `python` commands.
 
 ### 1.2 Configure AWS Credentials
-You are deploying to AWS Account ID: **630956767035**.
+You are deploying to AWS Account ID: **0000000000000**.
 
 If you are using a standard IAM User:
 ```powershell
